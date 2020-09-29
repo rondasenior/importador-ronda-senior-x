@@ -29,7 +29,7 @@ public class PersonMapper {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateBirthday = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getBirthday());
 		entity.setBirthday(sdf.format(dateBirthday));
-		
+		entity.setRegistry(dto.getRegistry());
 		entity.setAddress(dto.getAddress());
 		entity.setDistrict(dto.getDistrict());
 		entity.setCity(dto.getCity());

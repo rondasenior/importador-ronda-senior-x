@@ -1,11 +1,11 @@
-### Configurar Java 11 e Maven
+# Configurar Java 11 e Maven
 * Baixar o [Java 11](https://jdk.java.net/archive/)
 * Baixar o [Maven](https://maven.apache.org/install.html)
 
 É necessário adicionar ambos nas variáveis de ambiente, para isso sugiro consultar o site da [Medium](https://medium.com/beelabacademy/configurando-vari%C3%A1veis-de-ambiente-java-home-e-maven-home-no-windows-e-unix-d9461f783c26)
 
 
-### IDE
+# IDE
 * Baixar o [Eclipse](https://www.eclipse.org/downloads/)
 * Após abrir o Eclipse sugerimos instalar o WindowBuilder, para isso:
     * No menu acesse Help -> Eclipse Marketplace...
@@ -23,11 +23,15 @@
 
 **Sugerimos que na classe RestService troque as URLs(urlSAM e urlSSecure) para aportar para seu ambiente**
 
-
-### Gerando o JAR
+# Gerando o JAR
 * Para gerar o JAR vá no pom principal:
+    * Alterar a tag principal **<version>** do pom para o padrão de [versionamento semântico](https://imasters.com.br/codigo/versionamento-semantico-o-que-e-e-como-usar#:~:text=Essa%20regra%20define%20basicamente%20o,dever%C3%A1%20sempre%20iniciar%20com%201.)
+    * Alterado, não esquecer de alterar o changelog conforme o padrão dentro do arquivo  _CHANGELOG.md_
     * Com o botão direito selecione Run As -> Maven clean
     * Após isto com o botão direito ir em Run As -> Maven build...
     * Quando aberto a janela do Maven build em "Goals" escrever "package", dar um Apply e logo após Run
     * Com isso o JAR será criado com as depêndencias
-    * Após finalizar tudo será necessário colocar o JAR "importador-ronda-senior-x-0.0.1-SNAPSHOT.jar" dentro da pasta jar que se encontra na raiz do projeto e comitar
+    * Após finalizar tudo será necessário colocar o JAR "importador-ronda-senior-x-1.0.0.jar" dentro da pasta jar que se encontra na raiz do projeto e comitar
+    
+
+

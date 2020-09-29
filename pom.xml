@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>br.com.senior</groupId>
 	<artifactId>importador-ronda-senior-x</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>importador-ronda-senior-x</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -63,6 +63,16 @@
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>com.jgoodies</groupId>
+		    <artifactId>jgoodies-common</artifactId>
+		    <version>1.8.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.jgoodies</groupId>
+		    <artifactId>jgoodies-forms</artifactId>
+		    <version>1.8.0</version>
 		</dependency>
 	</dependencies>
 
