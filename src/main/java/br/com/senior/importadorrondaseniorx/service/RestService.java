@@ -33,10 +33,8 @@ public class RestService {
 
     private RestService() {
         restTemplate = new RestTemplateBuilder().build();
-//        urlSAM = "https://platform.senior.com.br/t/senior.com.br/bridge/1.0";
-//        urlSSecure = "https://platform.senior.com.br/t/senior.com.br/sam/1.0";
-        urlSAM = "https://cloud-leaf.senior.com.br/t/senior.com.br/bridge/1.0";
-        urlSSecure = "https://cloud-leaf.senior.com.br:8243/t/sam-gabriel.com.br/sam-gabriel/1.0";
+        urlSAM = "https://platform.senior.com.br/t/senior.com.br/bridge/1.0";
+        urlSSecure = "https://platform.senior.com.br/t/senior.com.br/sam/1.0";
         
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.APPLICATION_OCTET_STREAM));
