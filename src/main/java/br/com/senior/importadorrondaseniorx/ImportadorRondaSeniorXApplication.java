@@ -21,6 +21,7 @@ public class ImportadorRondaSeniorXApplication {
 				try {
 					for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				        if ("Metal".equals(info.getName())) {
+							
 				            UIManager.setLookAndFeel(info.getClassName());
 				            break;
 				        }
