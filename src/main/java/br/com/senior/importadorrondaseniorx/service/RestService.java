@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.senior.importadorrondaseniorx.dto.LoginDto;
-import br.com.senior.importadorrondaseniorx.dto.UserAllPreferencesDto;
 
 @Service
 public class RestService {
@@ -25,7 +24,6 @@ public class RestService {
 	private final String urlSAM;
 	private final String urlSSecure;
 	private LoginDto loginDto;
-	private UserAllPreferencesDto userPreferencesDto;
 
 	public static synchronized RestService getInstance() {
 		if (restService == null)
@@ -35,8 +33,6 @@ public class RestService {
 
     private RestService() {
         restTemplate = new RestTemplateBuilder().build();
-//        urlSAM = "https://cloud-leaf.senior.com.br/t/senior.com.br/bridge/1.0";
-//        urlSSecure = "https://cloud-leaf.senior.com.br:8243/t/sam-gabriel.com.br/sam-gabriel/1.0";
         urlSAM = "https://platform.senior.com.br/t/senior.com.br/bridge/1.0";
         urlSSecure = "https://platform.senior.com.br/t/senior.com.br/sam/1.0";
         
@@ -92,18 +88,6 @@ public class RestService {
     
     public LoginDto getToken() {
     	return loginDto;
-    }
-    
-    protected void setUserPreferences(UserAllPreferencesDto userPreferencesDto) {
-		this.userPreferencesDto = userPreferencesDto;
-	}
-    
-    public UserAllPreferencesDto getUserPreferences() {
-    	return userPreferencesDto;
-    }
-    
-    public void resetUserPreferences() {
-    	userPreferencesDto = null;
     }
     
     public void resetToken() {

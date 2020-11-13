@@ -1,13 +1,11 @@
 package br.com.senior.importadorrondaseniorx.mappers;
 
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import br.com.senior.importadorrondaseniorx.controller.UserController;
 import br.com.senior.importadorrondaseniorx.dto.PersonDto;
 import br.com.senior.importadorrondaseniorx.dto.PersonRoleDto;
 import br.com.senior.importadorrondaseniorx.dto.SearchPersonDto;
@@ -19,7 +17,6 @@ import br.com.senior.importadorrondaseniorx.model.imports.person.Phone;
 import br.com.senior.importadorrondaseniorx.model.imports.personrole.PersonRole;
 import br.com.senior.importadorrondaseniorx.model.search.documenttype.DocumentType;
 import br.com.senior.importadorrondaseniorx.model.search.person.PersonSearch;
-import br.com.senior.importadorrondaseniorx.utils.DateUtils;
 
 public class PersonMapper {
 
@@ -28,7 +25,11 @@ public class PersonMapper {
 		
 		entity.setName(dto.getName());
 		entity.setGender(Gender.values()[dto.getGender()]);
-		entity.setBirthday(LocalDate.parse(dto.getBirthday(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString());
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateBirthday = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getBirthday());
+		entity.setBirthday(sdf.format(dateBirthday));
+		entity.setRegistry(dto.getRegistry());
 		entity.setAddress(dto.getAddress());
 		entity.setDistrict(dto.getDistrict());
 		entity.setCity(dto.getCity());
@@ -102,16 +103,12 @@ public class PersonMapper {
 	public static PersonRole personRoleDtoToEntity(PersonRoleDto dto) {
 		PersonRole entity = new PersonRole();
 		
-		String startDate = LocalDateTime.parse(dto.getStartDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
-		String endDate = LocalDateTime.parse(dto.getEndDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
-		int offset = UserController.getUserPreferences().getOffset();
-		
 		entity.setId(dto.getId() == null ? 0 : dto.getId());
 		entity.setPersonId(dto.getPersonId());
 		entity.setRoleId(dto.getRoleId());
 		entity.setIntegrated(dto.isIntegrated());
-		entity.setStartDate(DateUtils.formatDateTimeUsingGMT(startDate, offset));
-		entity.setEndDate(DateUtils.formatDateTimeUsingGMT(endDate, offset));
+		entity.setStartDate(dto.getStartDate());
+		entity.setEndDate(dto.getEndDate());
 		
 		return entity;
 	}

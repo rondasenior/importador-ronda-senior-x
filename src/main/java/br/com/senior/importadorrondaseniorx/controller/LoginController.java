@@ -12,11 +12,9 @@ import br.com.senior.importadorrondaseniorx.service.RestService;
 public class LoginController {
 
 	private LoginService loginService = new LoginService();
-	private UserController userController = new UserController();
 
 	public void authenticateByUserPassword(LoginInputDto loginInputDto) throws IOException, InterruptedException {
 		loginService.authenticateByUserPassword(loginInputDto);
-		userController.setUserPreferences();
 	}
 
 	public void authenticateByKey(LoginInputDto loginInputDto) throws JsonSyntaxException, IOException {
@@ -29,7 +27,6 @@ public class LoginController {
 	
 	public static void resetToken() {
 		RestService.getInstance().resetToken();
-		RestService.getInstance().resetUserPreferences();
 	}
 	
 	public static boolean isAuthenticated() {

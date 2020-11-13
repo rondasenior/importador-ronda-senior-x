@@ -26,7 +26,7 @@ public class ImportadorRondaSeniorXApplication {
 				        }
 				    }
 					new LoginFrame();
-				} catch (Exception e) {
+				} catch (Exception e) {					
 					e.printStackTrace();
 				}
 			}
