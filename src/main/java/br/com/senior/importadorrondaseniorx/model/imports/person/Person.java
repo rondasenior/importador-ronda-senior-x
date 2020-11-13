@@ -21,7 +21,6 @@ public class Person {
 	private List<Document> documents = new ArrayList<>();
 	private List<Email> emails = new ArrayList<>();
 	private List<Phone> phones = new ArrayList<>();
-	private String registry;
 	
 	public Person() {
 	}
@@ -141,13 +140,4 @@ public class Person {
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
 	}
-
-	public String getRegistry() {
-		return registry;
-	}
-
-	public void setRegistry(String registry) {
-		this.registry = registry;
-	}
-	
 }
