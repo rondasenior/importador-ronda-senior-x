@@ -48,7 +48,7 @@ public class PersonSearchView extends JPanel implements ActionListener, ItemList
 		addCheckBox();
 	}
 	
-	public void onInit() {
+	public void init() {
 		showSearchAll();
 	}
 	

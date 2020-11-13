@@ -14,7 +14,7 @@ import br.com.senior.importadorrondaseniorx.utils.Utils;
 
 public class HighlightPainter extends DefaultHighlightPainter {
 	
-	private static List<Integer> positions = new ArrayList<>();
+	private static List<Integer> positions;
 	private static Integer cursorPosition;
 	
 	public HighlightPainter(Color color) {

@@ -315,8 +315,6 @@ public class AppMainFrame extends JFrame implements ActionListener {
 		searchPersonView.setVisible(Boolean.FALSE);
 		groupSearchView.setVisible(Boolean.FALSE);
 		roleSearchView.setVisible(Boolean.FALSE);
-		
-		searchDocumentTypeView.onInit();
 	}
 	
 	private void showSearchPersonView() {
@@ -326,7 +324,7 @@ public class AppMainFrame extends JFrame implements ActionListener {
 		groupSearchView.setVisible(Boolean.FALSE);
 		roleSearchView.setVisible(Boolean.FALSE);
 		
-		searchPersonView.onInit();
+		searchPersonView.init();
 	}
 	
 	private void showSearchGroupView() {
@@ -335,8 +333,6 @@ public class AppMainFrame extends JFrame implements ActionListener {
 		searchPersonView.setVisible(Boolean.FALSE);
 		groupSearchView.setVisible(Boolean.TRUE);
 		roleSearchView.setVisible(Boolean.FALSE);
-		
-		groupSearchView.onInit();
 	}
 	
 	private void showSearchRoleView() {
@@ -345,8 +341,6 @@ public class AppMainFrame extends JFrame implements ActionListener {
 		searchPersonView.setVisible(Boolean.FALSE);
 		groupSearchView.setVisible(Boolean.FALSE);
 		roleSearchView.setVisible(Boolean.TRUE);
-		
-		roleSearchView.onInit();
 	}
 	
 	private void createFooterPanel() {

@@ -1,12 +1,16 @@
 package br.com.senior.importadorrondaseniorx.mappers;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.senior.importadorrondaseniorx.controller.UserController;
 import br.com.senior.importadorrondaseniorx.dto.CardCredentialDto;
 import br.com.senior.importadorrondaseniorx.model.imports.cardcredential.CardCredential;
 import br.com.senior.importadorrondaseniorx.model.imports.cardcredential.InformationCardCredential;
 import br.com.senior.importadorrondaseniorx.model.imports.person.Person;
+import br.com.senior.importadorrondaseniorx.utils.DateUtils;
 
 public class CardCredentialMapper {
 
@@ -33,9 +37,13 @@ public class CardCredentialMapper {
 	public static CardCredential toEntity(CardCredentialDto dto) {
 		CardCredential entity = new CardCredential();
 		
+		String startDate = LocalDateTime.parse(dto.getStartDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
+		String endDate = LocalDateTime.parse(dto.getEndDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
+		int offset = UserController.getUserPreferences().getOffset();
+		
 		entity.setId(dto.getId() == null ? 0 : dto.getId());
-		entity.setStartDate(dto.getStartDate());
-		entity.setExpirationDate(dto.getEndDate());
+		entity.setStartDate(DateUtils.formatDateTimeUsingGMT(startDate, offset));
+		entity.setExpirationDate(DateUtils.formatDateTimeUsingGMT(endDate, offset));
 		entity.setPerson(new Person(dto.getPersonId()));
 		entity.setSituation(dto.getSituation());
 		
