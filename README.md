@@ -24,6 +24,7 @@
 **Sugerimos que na classe RestService troque as URLs(urlSAM e urlSSecure) para aportar para seu ambiente**
 
 # Gerando o JAR
+* Somente depois de tudo comitado que deve-se iniciar o processo de geração do jar
 * Para gerar o JAR vá no pom principal:
     * Alterar a tag principal **<version>** do pom para o padrão de [versionamento semântico](https://imasters.com.br/codigo/versionamento-semantico-o-que-e-e-como-usar#:~:text=Essa%20regra%20define%20basicamente%20o,dever%C3%A1%20sempre%20iniciar%20com%201.)
     * Alterado, não esquecer de alterar o changelog conforme o padrão dentro do arquivo  _CHANGELOG.md_
