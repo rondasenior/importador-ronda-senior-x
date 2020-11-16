@@ -73,7 +73,7 @@ public class LoginFrame extends JFrame implements ActionListener, ChangeListener
 	
 	private void insertComponents() {
 		insertLoginByUserComponents();
-		insertLoginByKeyComponents();
+//		insertLoginByKeyComponents();
 		insertButtons();
 		insertTabbedPaneLogin();
 	}
@@ -137,7 +137,7 @@ public class LoginFrame extends JFrame implements ActionListener, ChangeListener
 		tabbedPaneLogin = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPaneLogin.setBounds(10, 77, 319, 267);
 		tabbedPaneLogin.add("Por Usuário", panelByUser);  
-		tabbedPaneLogin.add("Por Chave", panelByKey); 
+//		tabbedPaneLogin.add("Por Chave", panelByKey);
 		tabbedPaneLogin.addChangeListener(this);
 		getContentPane().add(tabbedPaneLogin);
 	}
