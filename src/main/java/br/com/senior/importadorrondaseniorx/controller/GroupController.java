@@ -5,6 +5,7 @@ import java.util.StringJoiner;
 
 import org.springframework.web.client.HttpServerErrorException;
 
+import br.com.senior.importadorrondaseniorx.core.MandatoryFieldEmptyException;
 import br.com.senior.importadorrondaseniorx.core.SSecureError;
 import br.com.senior.importadorrondaseniorx.dto.GroupPersonDto;
 import br.com.senior.importadorrondaseniorx.dto.GroupSearchDto;
@@ -16,7 +17,7 @@ public class GroupController {
 
 	private GroupService service = new GroupService();
 	
-	public String persistGroupPerson(List<String[]> csvReaderValues) {
+	public String persistGroupPerson(List<String[]> csvReaderValues) throws MandatoryFieldEmptyException {
 		List<GroupPersonDto> dtos = GroupMapper.groupPersonCsvToDtos(csvReaderValues);
 		StringJoiner logFinal = new StringJoiner("");
 		

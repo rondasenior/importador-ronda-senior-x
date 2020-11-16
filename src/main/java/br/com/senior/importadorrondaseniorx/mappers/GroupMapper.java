@@ -4,20 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.senior.importadorrondaseniorx.dto.GroupSearchDto;
+import br.com.senior.importadorrondaseniorx.core.MandatoryFieldEmptyException;
 import br.com.senior.importadorrondaseniorx.dto.GroupPersonDto;
 import br.com.senior.importadorrondaseniorx.model.search.group.GroupSearch;
+import br.com.senior.importadorrondaseniorx.utils.Utils;
 
 public class GroupMapper {
 
-	public static List<GroupPersonDto> groupPersonCsvToDtos(List<String[]> objs) {
+	public static List<GroupPersonDto> groupPersonCsvToDtos(List<String[]> objs) throws MandatoryFieldEmptyException {
 		List<GroupPersonDto> dtos = new ArrayList<>();
 		
 		for (String[] groupPerson : objs) {
 			GroupPersonDto dto = new GroupPersonDto();
 			int position = 0;
 
-			dto.setGroupId(Long.parseLong(groupPerson[position++]));
-			dto.setPersonId(Long.parseLong(groupPerson[position++]));
+			String groupId = groupPerson[position++];
+			Utils.validateMandatoryFieldEmpty(groupId, "ID do Grupo");
+			dto.setGroupId(Long.parseLong(groupId));
+			
+			String personId = groupPerson[position++];
+			Utils.validateMandatoryFieldEmpty(personId, "ID da Pessoa");
+			dto.setPersonId(Long.parseLong(personId));
 			
 			dtos.add(dto);
 		}

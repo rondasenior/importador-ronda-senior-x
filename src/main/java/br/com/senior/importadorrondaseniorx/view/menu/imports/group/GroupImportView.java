@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.StringJoiner;
 
 import br.com.senior.importadorrondaseniorx.controller.GroupController;
+import br.com.senior.importadorrondaseniorx.core.MandatoryFieldEmptyException;
 import br.com.senior.importadorrondaseniorx.utils.Utils;
 import br.com.senior.importadorrondaseniorx.view.frame.LogFrame;
 import br.com.senior.importadorrondaseniorx.view.menu.imports.ImportGenericView;
@@ -36,7 +37,13 @@ public class GroupImportView extends ImportGenericView implements ActionListener
 	protected void confirmImportButtonAction() {
         try {
         	setDefaultLog(controller.persistGroupPerson(csvReaderValues));
-        	Utils.showDialogMessageInfo("Sucesso", "Importação realizada com sucesso.");
+        	if (log.contains("ERRO")) {
+        		Utils.showDialogMessageWarn("Atenção", "Registros não foram importados corretamente, verifique o LOG.");
+        	} else {
+        		Utils.showDialogMessageInfo("Sucesso", "Importação realizada com sucesso");
+        	}
+		} catch (MandatoryFieldEmptyException e) {
+			e.showError();
 		} catch (Exception e) {
 			Utils.showDialogMessageError("Erro", "Erro inesperado: " + e.getMessage());
 		}

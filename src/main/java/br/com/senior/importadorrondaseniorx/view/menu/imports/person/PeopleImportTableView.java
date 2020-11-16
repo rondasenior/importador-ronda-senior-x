@@ -11,10 +11,10 @@ public class PeopleImportTableView extends GenericTableView {
 
 	private static final long serialVersionUID = 6926923076923867562L;
 
-	public static final String[] HEADERS = {"Nome", "Genero", "Aniversario", "Matricula", "Endereco", "Bairro", "Cidade",
-											"Estado", "CEP", "Nacionalidade", "ID Tipo do Documento", "Documento", 
-											"E-mail Preferencial", "E-mail", "Telefone Preferencial",
-											"DDI Telefone", "Telefone"};
+	public static final String[] HEADERS = {"* Nome (String)", "Genero (0 - Desconhecido, 1 - Masculino, 2 - Feminino)", "Aniversario (dd/MM/yyyy)",
+											"Matricula (String)", "Endereco (String)", "Bairro (String)", "Cidade (String)",
+											"Estado (String)", "CEP (String)", "Nacionalidade (String)", "* ID Tipo do Documento (Long)",
+											"* Documento (String)", "* E-mail (String)", "* DDI Telefone (Long)", "* Telefone (String)"};
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -44,16 +44,13 @@ public class PeopleImportTableView extends GenericTableView {
 			String nationality = person[position++];
 			String documentTypeId = person[position++];
 			String document = person[position++];
-			String emailPreferential = person[position++];
 			String email = person[position++];
-			String phonePreferential = person[position++];
 			String phoneDdi = person[position++];
 			String phone = person[position++];
 			
 			defaultTable.addRow(new Object[] {name, gender, birthday, registry, address, district, city,
 											  federalState, zipCode, nationality, documentTypeId,
-											  document, emailPreferential, email, phonePreferential,
-											  phoneDdi, phone});
+											  document, email, phoneDdi, phone});
 		}
 	}
 }

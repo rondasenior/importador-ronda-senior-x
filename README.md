@@ -24,14 +24,15 @@
 **Sugerimos que na classe RestService troque as URLs(urlSAM e urlSSecure) para aportar para seu ambiente**
 
 # Gerando o JAR
+* Somente depois de tudo comitado que deve-se iniciar o processo de geração do jar
 * Para gerar o JAR vá no pom principal:
     * Alterar a tag principal **<version>** do pom para o padrão de [versionamento semântico](https://imasters.com.br/codigo/versionamento-semantico-o-que-e-e-como-usar#:~:text=Essa%20regra%20define%20basicamente%20o,dever%C3%A1%20sempre%20iniciar%20com%201.)
     * Alterado, não esquecer de alterar o changelog conforme o padrão dentro do arquivo  _CHANGELOG.md_
-    * Com o botão direito selecione Run As -> Maven clean
+    * No pom com o botão direito selecione Run As -> Maven clean
     * Após isto com o botão direito ir em Run As -> Maven build...
     * Quando aberto a janela do Maven build em "Goals" escrever "package", dar um Apply e logo após Run
-    * Com isso o JAR será criado com as depêndencias
-    * Após finalizar tudo será necessário colocar o JAR "importador-ronda-senior-x-1.0.0.jar" dentro da pasta jar que se encontra na raiz do projeto e comitar
+    * Com isso o JAR será criado com as depêndencias dentro da pasta target do seu projeto
+    * Após finalizar tudo será necessário colocar o JAR "importador-ronda-senior-x-{version}.jar" dentro da pasta ``jar`` que se encontra na raiz do projeto, remover o jar antigo e comitar
     
 
 

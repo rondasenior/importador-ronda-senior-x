@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 
 import com.opencsv.CSVWriter;
 
+import br.com.senior.importadorrondaseniorx.core.MandatoryFieldEmptyException;
+
 public class Utils {
 	
 	public static final String NEW_LINE = "\n";
@@ -69,6 +71,10 @@ public class Utils {
 		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	public static void showDialogMessageWarn(String title, String msg) {
+		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.WARNING_MESSAGE);
+	}
+	
 	public static int showDialogOptionDefault(String title, String msg) {
 		Object[] options = { "Sim", "Não" }; 
 		return showDialogOption(title, msg, JOptionPane.INFORMATION_MESSAGE, options, options[0]);
@@ -96,5 +102,15 @@ public class Utils {
 				.add(text)
 				.add("_________________________________________________________________________________________________")
 				.add("").add("").add("").toString();
+	}
+	
+	public static void validateMandatoryFieldEmpty(String field, String fieldName) throws MandatoryFieldEmptyException {
+		if (isEmpty(field)) {
+			throw new MandatoryFieldEmptyException("Campo obrigatório não informado: " + fieldName.toUpperCase());
+		}
+	}
+	
+	public static Boolean isEmpty(String value) {
+		return value == null || value.trim().isEmpty();
 	}
 }

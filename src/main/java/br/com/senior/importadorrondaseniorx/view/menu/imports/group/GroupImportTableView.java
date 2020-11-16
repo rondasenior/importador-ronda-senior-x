@@ -10,7 +10,7 @@ public class GroupImportTableView extends GenericTableView {
 
 	private static final long serialVersionUID = -6455398102670403888L;
 	
-	public static final String[] HEADERS = {"ID do Grupo", "ID da Pessoa"};
+	public static final String[] HEADERS = {"* ID do Grupo (Long)", "* ID da Pessoa (Long)"};
 
 	@SuppressWarnings("unchecked")
 	@Override
