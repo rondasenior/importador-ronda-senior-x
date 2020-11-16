@@ -11,10 +11,11 @@ public class PeopleImportTableView extends GenericTableView {
 
 	private static final long serialVersionUID = 6926923076923867562L;
 
-	public static final String[] HEADERS = {"Nome", "Genero", "Aniversario", "Matricula", "Endereco", "Bairro", "Cidade",
-											"Estado", "CEP", "Nacionalidade", "ID Tipo do Documento", "Documento", 
-											"E-mail Preferencial", "E-mail", "Telefone Preferencial",
-											"DDI Telefone", "Telefone"};
+	public static final String[] HEADERS = {"* Nome (String)", "Genero (0 - Desconhecido, 1 - Masculino, 2 - Feminino)", "Aniversario (dd/MM/yyyy)",
+											"Matricula (String)", "Endereco (String)", "Bairro (String)", "Cidade (String)",
+											"Estado (String)", "CEP (String)", "Nacionalidade (String)", "* ID Tipo do Documento (Long)",
+											"* Documento (String)", "E-mail Preferencial? (true/false)", "E-mail (String)",
+											"Telefone Preferencial (String)", "DDI Telefone (String)", "Telefone (String)"};
 	
 	@SuppressWarnings("unchecked")
 	@Override

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.StringJoiner;
 
 import br.com.senior.importadorrondaseniorx.controller.PersonController;
+import br.com.senior.importadorrondaseniorx.core.MandatoryFieldEmptyException;
 import br.com.senior.importadorrondaseniorx.utils.Utils;
 import br.com.senior.importadorrondaseniorx.view.frame.LogFrame;
 import br.com.senior.importadorrondaseniorx.view.menu.imports.ImportGenericView;
@@ -36,9 +37,15 @@ public class PeopleImportView extends ImportGenericView {
 	protected void confirmImportButtonAction() {
         try {
         	setDefaultLog(personController.persistPeople(csvReaderValues));
-        	Utils.showDialogMessageInfo("Sucesso", "Importação realizada com sucesso");
+        	if (log.contains("ERRO")) {
+        		Utils.showDialogMessageWarn("Atenção", "Registros não foram importados corretamente, verifique o LOG.");
+        	} else {
+        		Utils.showDialogMessageInfo("Sucesso", "Importação realizada com sucesso");
+        	}
 		} catch (ParseException e) {
 			Utils.showDialogMessageError("Erro", "Erro inesperado converter uma data: " + e.getMessage());
+		} catch (MandatoryFieldEmptyException e) {
+			e.showError();
 		} catch (Exception e) {
 			Utils.showDialogMessageError("Erro", "Erro inesperado: " + e.getMessage());
 		}

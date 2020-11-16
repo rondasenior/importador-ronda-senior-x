@@ -7,6 +7,7 @@ import java.util.StringJoiner;
 
 import org.springframework.web.client.HttpServerErrorException;
 
+import br.com.senior.importadorrondaseniorx.core.MandatoryFieldEmptyException;
 import br.com.senior.importadorrondaseniorx.core.SSecureError;
 import br.com.senior.importadorrondaseniorx.dto.BulkPersonFeedbackDto;
 import br.com.senior.importadorrondaseniorx.dto.PersonDto;
@@ -20,7 +21,7 @@ public class PersonController {
 
 	private final PersonService personService = new PersonService();
 	
-	public String persistPeople(List<String[]> csvReaderValues) throws ParseException {
+	public String persistPeople(List<String[]> csvReaderValues) throws ParseException, MandatoryFieldEmptyException {
 		List<PersonDto> dtos = PersonMapper.csvToDtos(csvReaderValues);
 		List<List<PersonDto>> datasToSend = new ArrayList<>();
 		
@@ -58,7 +59,7 @@ public class PersonController {
 		return logFinal.toString();
 	}
 	
-	public String persistPersonRole(List<String[]> csvReaderValues) {
+	public String persistPersonRole(List<String[]> csvReaderValues) throws MandatoryFieldEmptyException {
 		List<PersonRoleDto> dtos = PersonMapper.personRoleCsvToDtos(csvReaderValues);
 		StringJoiner logFinal = new StringJoiner("");
 		

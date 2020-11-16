@@ -10,7 +10,7 @@ public class RoleImportTableView extends GenericTableView {
 
 	private static final long serialVersionUID = 2593552259337186251L;
 	
-	public static final String[] HEADERS = {"Data de Inicio", "Data de Fim", "ID da Pessoa", "ID do Papel"};
+	public static final String[] HEADERS = {"* Data de Inicio (dd/MM/yyyy HH:mm)", "Data de Fim (dd/MM/yyyy HH:mm)", "* ID da Pessoa (Long)", "* ID do Papel (Long)"};
 
 	@SuppressWarnings("unchecked")
 	@Override

@@ -5,6 +5,7 @@ import java.util.StringJoiner;
 
 import org.springframework.web.client.HttpServerErrorException;
 
+import br.com.senior.importadorrondaseniorx.core.MandatoryFieldEmptyException;
 import br.com.senior.importadorrondaseniorx.core.SSecureError;
 import br.com.senior.importadorrondaseniorx.dto.CardCredentialDto;
 import br.com.senior.importadorrondaseniorx.mappers.CardCredentialMapper;
@@ -15,7 +16,7 @@ public class CardCredentialController {
 
 	private CardCredentialService service = new CardCredentialService();
 	
-	public String persistCredentialCard(List<String[]> csvReaderValues) {
+	public String persistCredentialCard(List<String[]> csvReaderValues) throws MandatoryFieldEmptyException {
 		List<CardCredentialDto> dtos = CardCredentialMapper.csvToDtos(csvReaderValues);
 		StringJoiner logFinal = new StringJoiner("");
 		

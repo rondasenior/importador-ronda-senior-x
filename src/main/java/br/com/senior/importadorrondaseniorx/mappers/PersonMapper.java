@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.senior.importadorrondaseniorx.controller.UserController;
+import br.com.senior.importadorrondaseniorx.core.MandatoryFieldEmptyException;
 import br.com.senior.importadorrondaseniorx.dto.PersonDto;
 import br.com.senior.importadorrondaseniorx.dto.PersonRoleDto;
 import br.com.senior.importadorrondaseniorx.dto.SearchPersonDto;
@@ -20,6 +21,7 @@ import br.com.senior.importadorrondaseniorx.model.imports.personrole.PersonRole;
 import br.com.senior.importadorrondaseniorx.model.search.documenttype.DocumentType;
 import br.com.senior.importadorrondaseniorx.model.search.person.PersonSearch;
 import br.com.senior.importadorrondaseniorx.utils.DateUtils;
+import br.com.senior.importadorrondaseniorx.utils.Utils;
 
 public class PersonMapper {
 
@@ -27,8 +29,15 @@ public class PersonMapper {
 		Person entity = new Person();
 		
 		entity.setName(dto.getName());
-		entity.setGender(Gender.values()[dto.getGender()]);
-		entity.setBirthday(LocalDate.parse(dto.getBirthday(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString());
+		
+		if (dto.getGender() != null) {
+			entity.setGender(Gender.values()[dto.getGender()]);
+		}
+		
+		if (!Utils.isEmpty(dto.getBirthday())) {
+			entity.setBirthday(LocalDate.parse(dto.getBirthday(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString());
+		}
+		
 		entity.setAddress(dto.getAddress());
 		entity.setDistrict(dto.getDistrict());
 		entity.setCity(dto.getCity());
@@ -50,15 +59,19 @@ public class PersonMapper {
 		return entities;
 	}
 	
-	public static List<PersonDto> csvToDtos(List<String[]> objs) {
+	public static List<PersonDto> csvToDtos(List<String[]> objs) throws MandatoryFieldEmptyException {
 		List<PersonDto> dtos = new ArrayList<>();
 		
 		for (String[] person : objs) {
 			PersonDto dto = new PersonDto();
 			int position = 0;
 			
-			dto.setName(person[position++]);
-			dto.setGender(Integer.parseInt(person[position++]));
+			String name = person[position++];
+			Utils.validateMandatoryFieldEmpty(name, "Nome");
+			dto.setName(name);
+			
+			String gender = person[position++];
+			dto.setGender(Utils.isEmpty(gender) ? null : Integer.parseInt(gender));
 			dto.setBirthday(person[position++]);
 			dto.setRegistry(person[position++]);
 			dto.setAddress(person[position++]);
@@ -67,12 +80,24 @@ public class PersonMapper {
 			dto.setFederalState(person[position++]);
 			dto.setZipCode(person[position++]);
 			dto.setNationality(person[position++]);
-			dto.setDocumentTypeId(Long.parseLong(person[position++]));
-			dto.setDocument(person[position++]);
-			dto.setEmailPreferential(Boolean.parseBoolean(person[position++]));
+			
+			String documentTypeId = person[position++];
+			Utils.validateMandatoryFieldEmpty(documentTypeId, "ID Tipo do Documento");
+			dto.setDocumentTypeId(Long.parseLong(documentTypeId));
+			
+			String document = person[position++];
+			Utils.validateMandatoryFieldEmpty(document, "Documento");
+			dto.setDocument(document);
+			
+			String emailPreferential = person[position++];
+			dto.setEmailPreferential(Utils.isEmpty(emailPreferential) ? null : Boolean.parseBoolean(emailPreferential));
 			dto.setEmail(person[position++]);
-			dto.setPhonePreferential(Boolean.parseBoolean(person[position++]));
-			dto.setPhoneDdi(Long.parseLong(person[position++]));
+			
+			String phonePreferential = person[position++];
+			dto.setPhonePreferential(Utils.isEmpty(phonePreferential) ? null : Boolean.parseBoolean(phonePreferential));
+			
+			String phoneDdi = person[position++];
+			dto.setPhoneDdi(Utils.isEmpty(phoneDdi) ? null : Long.parseLong(phoneDdi));
 			dto.setPhone(person[position++]);
 			
 			dtos.add(dto);
@@ -81,17 +106,26 @@ public class PersonMapper {
 		return dtos;
 	}
 	
-	public static List<PersonRoleDto> personRoleCsvToDtos(List<String[]> objs) {
+	public static List<PersonRoleDto> personRoleCsvToDtos(List<String[]> objs) throws MandatoryFieldEmptyException {
 		List<PersonRoleDto> dtos = new ArrayList<>();
 		
-		for (String[] person : objs) {
+		for (String[] obj : objs) {
 			PersonRoleDto dto = new PersonRoleDto();
 			int position = 0;
 			
-			dto.setStartDate(person[position++]);
-			dto.setEndDate(person[position++]);
-			dto.setPersonId(Long.parseLong(person[position++]));
-			dto.setRoleId(Long.parseLong(person[position++]));
+			String startDate = obj[position++];
+			Utils.validateMandatoryFieldEmpty(startDate, "Data de Início");
+			dto.setStartDate(startDate);
+			
+			dto.setEndDate(obj[position++]);
+			
+			String personId = obj[position++];
+			Utils.validateMandatoryFieldEmpty(personId, "ID da Pessoa");
+			dto.setPersonId(Long.parseLong(personId));
+			
+			String roleId = obj[position++];
+			Utils.validateMandatoryFieldEmpty(roleId, "ID do Papel");
+			dto.setRoleId(Long.parseLong(roleId));
 			
 			dtos.add(dto);
 		}
@@ -102,16 +136,19 @@ public class PersonMapper {
 	public static PersonRole personRoleDtoToEntity(PersonRoleDto dto) {
 		PersonRole entity = new PersonRole();
 		
-		String startDate = LocalDateTime.parse(dto.getStartDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
-		String endDate = LocalDateTime.parse(dto.getEndDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
 		int offset = UserController.getUserPreferences().getOffset();
+		String startDate = LocalDateTime.parse(dto.getStartDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
+		
+		if (!Utils.isEmpty(dto.getEndDate())) {
+			String endDate = LocalDateTime.parse(dto.getEndDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
+			entity.setEndDate(DateUtils.formatDateTimeUsingGMT(endDate, offset));
+		}
 		
 		entity.setId(dto.getId() == null ? 0 : dto.getId());
 		entity.setPersonId(dto.getPersonId());
 		entity.setRoleId(dto.getRoleId());
 		entity.setIntegrated(dto.isIntegrated());
 		entity.setStartDate(DateUtils.formatDateTimeUsingGMT(startDate, offset));
-		entity.setEndDate(DateUtils.formatDateTimeUsingGMT(endDate, offset));
 		
 		return entity;
 	}
