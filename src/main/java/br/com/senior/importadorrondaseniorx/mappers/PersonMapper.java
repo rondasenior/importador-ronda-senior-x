@@ -89,12 +89,9 @@ public class PersonMapper {
 			Utils.validateMandatoryFieldEmpty(document, "Documento");
 			dto.setDocument(document);
 			
-			String emailPreferential = person[position++];
-			dto.setEmailPreferential(Utils.isEmpty(emailPreferential) ? null : Boolean.parseBoolean(emailPreferential));
+			dto.setEmailPreferential(Boolean.TRUE);
 			dto.setEmail(person[position++]);
-			
-			String phonePreferential = person[position++];
-			dto.setPhonePreferential(Utils.isEmpty(phonePreferential) ? null : Boolean.parseBoolean(phonePreferential));
+			dto.setPhonePreferential(Boolean.TRUE);
 			
 			String phoneDdi = person[position++];
 			dto.setPhoneDdi(Utils.isEmpty(phoneDdi) ? null : Long.parseLong(phoneDdi));

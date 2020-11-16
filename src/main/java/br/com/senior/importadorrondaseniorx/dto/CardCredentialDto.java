@@ -73,7 +73,6 @@ public class CardCredentialDto {
 	public String toString() {
 		return new StringJoiner("")
 				.add("Id da pessoa: ").add(personId.toString()).add(Utils.NEW_LINE)
-				.add("Data de início: ").add(startDate).add(Utils.NEW_LINE)
 				.add("Data de término: ").add(endDate).add(Utils.NEW_LINE)
 				.add("Situação: ").add(situation.toString()).add(Utils.NEW_LINE)
 				.add("Tecnologia: ").add(cardTechnology.toString()).add(Utils.NEW_LINE)

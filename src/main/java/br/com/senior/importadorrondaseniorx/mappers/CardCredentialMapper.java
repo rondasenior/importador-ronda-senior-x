@@ -23,11 +23,8 @@ public class CardCredentialMapper {
 			CardCredentialDto dto = new CardCredentialDto();
 			int position = 0;
 			
-			dto.setStartDate(provisoryCardCredential[position++]);
-			
-			String endDate = provisoryCardCredential[position++];
-			Utils.validateMandatoryFieldEmpty(endDate, "Data de Fim");
-			dto.setEndDate(endDate);
+			dto.setStartDate(null);
+			dto.setEndDate(provisoryCardCredential[position++]);
 			
 			String personId = provisoryCardCredential[position++];
 			Utils.validateMandatoryFieldEmpty(personId, "ID da Pessoa");
@@ -55,15 +52,18 @@ public class CardCredentialMapper {
 		CardCredential entity = new CardCredential();
 		
 		int offset = UserController.getUserPreferences().getOffset();
-		String endDate = LocalDateTime.parse(dto.getEndDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
 		
 		if (!Utils.isEmpty(dto.getStartDate())) {
 			String startDate = LocalDateTime.parse(dto.getStartDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
 			entity.setStartDate(DateUtils.formatDateTimeUsingGMT(startDate, offset));
 		}
 		
+		if (!Utils.isEmpty(dto.getEndDate())) {
+			String endDate = LocalDateTime.parse(dto.getEndDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString();
+			entity.setExpirationDate(DateUtils.formatDateTimeUsingGMT(endDate, offset));
+		}
+		
 		entity.setId(dto.getId() == null ? 0 : dto.getId());
-		entity.setExpirationDate(DateUtils.formatDateTimeUsingGMT(endDate, offset));
 		entity.setPerson(new Person(dto.getPersonId()));
 		entity.setSituation(dto.getSituation());
 		
