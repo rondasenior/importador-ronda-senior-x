@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>br.com.senior</groupId>
 	<artifactId>importador-ronda-senior-x</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>importador-ronda-senior-x</name>
 	<description>Demo project for Spring Boot</description>
 
