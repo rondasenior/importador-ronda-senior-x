@@ -88,7 +88,7 @@ public abstract class ImportGenericView extends JPanel implements ActionListener
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
 			try {
-				CSVReader csvReader = new CSVReader(new InputStreamReader(new FileInputStream(file.getAbsolutePath()), "ISO-8859-1"));
+				CSVReader csvReader = new CSVReader(new InputStreamReader(new FileInputStream(file.getAbsolutePath()), "UTF-8"));
 				csvReader.skip(1);
 				csvReaderValues = csvReader.readAll();
 				if (csvReaderValues.size() == 0) {
