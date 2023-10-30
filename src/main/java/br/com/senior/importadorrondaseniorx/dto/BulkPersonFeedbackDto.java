@@ -2,6 +2,8 @@ package br.com.senior.importadorrondaseniorx.dto;
 
 import java.util.StringJoiner;
 
+import org.apache.commons.lang3.BooleanUtils;
+
 import br.com.senior.importadorrondaseniorx.utils.Utils;
 
 public class BulkPersonFeedbackDto {
@@ -10,6 +12,7 @@ public class BulkPersonFeedbackDto {
 	private String document;
 	private String situation;
 	private String message;
+	private Boolean personExists;
 	
 	public String getId() {
 		return id;
@@ -57,6 +60,17 @@ public class BulkPersonFeedbackDto {
 				.add("Nome: ").add(name).add(Utils.NEW_LINE)
 				.add("Documento: ").add(document).add(Utils.NEW_LINE)
 				.add("Situação: ").add(situation).add(Utils.NEW_LINE)
+				.add("Pessoa Existe?: ").add(BooleanUtils.isTrue(personExists) ? "Sim" : "Não").add(Utils.NEW_LINE)
 				.add("Mensagem: ").add(message == null ? "" : message).toString();
 	}
+
+    
+    public Boolean isPersonExists() {
+        return BooleanUtils.isTrue(personExists);
+    }
+
+    
+    public void setPersonExists(Boolean personExists) {
+        this.personExists = personExists;
+    }
 }

@@ -1,3 +1,8 @@
+# 1.0.3
+[30/10/2023]
+
+- Alterar Importador para tratar erro na inclusão de pessoas.
+
 # 1.0.2
 [04/12/2020]
 

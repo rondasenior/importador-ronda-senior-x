@@ -9,6 +9,7 @@ public class BulkPersonFeedback {
 	private String document;
 	private PersonSituationType situation;
 	private String message;
+	private Boolean personExists;
 	
 	public Long getId() {
 		return id;
@@ -49,4 +50,12 @@ public class BulkPersonFeedback {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+    public Boolean isPersonExists() {
+        return personExists;
+    }
+
+    public void setPersonExists(Boolean personExists) {
+        this.personExists = personExists;
+    }
 }

@@ -22,6 +22,7 @@ public class BulkPersonFeedbackMapper {
 		
 		dto.setSituation(situation);
 		dto.setMessage(entity.getMessage());
+		dto.setPersonExists(entity.isPersonExists());
 		return dto;
 	}
 	
