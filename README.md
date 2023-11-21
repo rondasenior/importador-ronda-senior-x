@@ -24,7 +24,7 @@
 **Sugerimos que na classe RestService troque as URLs(urlSAM e urlSSecure) para aportar para seu ambiente**
 
 # Criando chave SSH
-* Segue passoa para gerar chave SSSH e inclui-la no sourcetree:
+* Segue passos para gerar chave SSSH e inclui-la no sourcetree:
 1. Criar chave SSH utiizando e-mail da conta do github: </br>
 <img width="426" alt="Screenshot_2" src="https://github.com/rondasenior/importador-ronda-senior-x/assets/48299447/65372c33-3558-4e97-a9a4-96c9b02a5af7">
 </br>
@@ -38,7 +38,7 @@
 </br>
 4.  Commitar as alterações a criar pull request no github; </br>
 5.  Associar um viewer para aprovar o pull request; </br>
-6.  Solitar para alguém com permissão de executar merge para mergear o pull request aprovado. </br>
+6.  Solicitar para alguém com permissão de executar merge para mergear o pull request aprovado. </br>
 
 # Gerando o JAR
 * Somente depois de tudo comitado que deve-se iniciar o processo de geração do jar
