@@ -49,8 +49,8 @@ public class PersonController {
 		
 		StringJoiner logFinal = new StringJoiner("");
 		for (BulkPersonFeedbackDto result : dtoResults) {
-			if ("0".equals(result.getId())) {
-				logFinal.add(Utils.defaultLogError(result.toString()));
+			if (result.isPersonExists()) {
+				logFinal.add(Utils.defaultLogError("Pessoa já existe"));
 			} else {
 				logFinal.add(Utils.defaultLogSucess(result.toString()));
 			}
